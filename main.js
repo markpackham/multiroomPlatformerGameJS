@@ -26,6 +26,7 @@ window.addEventListener("keydown", (event) => {
       if (player.velocity.y === 0) {
         player.velocity.y = -10;
       }
+      break;
     // Player moves Left
     case "a":
       player.velocity.x = -5;
@@ -33,6 +34,18 @@ window.addEventListener("keydown", (event) => {
     // Player moves Right
     case "d":
       player.velocity.x = 5;
+      break;
+  }
+});
+
+// Stop player moving when keys released
+window.addEventListener("keyup", (event) => {
+  switch (event.key) {
+    case "a":
+      player.velocity.x = 0;
+      break;
+    case "d":
+      player.velocity.x = 0;
       break;
   }
 });
