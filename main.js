@@ -24,8 +24,15 @@ window.addEventListener("keydown", (event) => {
     case "w":
       // Do not let player air jump
       if (player.velocity.y === 0) {
-        player.velocity.y = -5;
+        player.velocity.y = -10;
       }
+    // Player moves Left
+    case "a":
+      player.velocity.x = -5;
+      break;
+    // Player moves Right
+    case "d":
+      player.velocity.x = 5;
       break;
   }
 });
