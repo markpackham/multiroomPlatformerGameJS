@@ -6,10 +6,30 @@ canvas.height = canvasHeight;
 
 const player = new Player();
 
+const keys = {
+  w: {
+    pressed: false,
+  },
+  a: {
+    pressed: false,
+  },
+  d: {
+    pressed: false,
+  },
+};
+
 function animate() {
   window.requestAnimationFrame(animate);
   c.fillStyle = "white";
   c.fillRect(0, 0, canvas.width, canvas.height);
+
+  player.velocity.x = 0;
+
+  if (keys.d.pressed) {
+    player.velocity.x = 5;
+  } else if (keys.a.pressed) {
+    player.velocity.x = -5;
+  }
 
   player.draw();
   player.update();
@@ -29,11 +49,11 @@ window.addEventListener("keydown", (event) => {
       break;
     // Player moves Left
     case "a":
-      player.velocity.x = -5;
+      keys.a.pressed = true;
       break;
     // Player moves Right
     case "d":
-      player.velocity.x = 5;
+      keys.d.pressed = true;
       break;
   }
 });
@@ -42,10 +62,10 @@ window.addEventListener("keydown", (event) => {
 window.addEventListener("keyup", (event) => {
   switch (event.key) {
     case "a":
-      player.velocity.x = 0;
+      keys.a.pressed = false;
       break;
     case "d":
-      player.velocity.x = 0;
+      keys.d.pressed = false;
       break;
   }
 });
