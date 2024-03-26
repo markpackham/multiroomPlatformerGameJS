@@ -13,24 +13,28 @@ class Player {
     this.width = 100;
     this.height = 100;
   }
+
+  draw() {
+    c.fillStyle = "red";
+    c.fillRect(this.position.x, this.position.y, this.width, this.height);
+  }
 }
 
-let y = 100;
-const playerHeight = 100;
+const player = new Player();
 
-let playerBottom = y + playerHeight;
+// let playerBottom = y + playerHeight;
 
 function animate() {
   window.requestAnimationFrame(animate);
   c.fillStyle = "white";
   c.fillRect(0, 0, canvas.width, canvas.height);
 
-  c.fillStyle = "red";
-  c.fillRect(100, y, 100, 100);
-  if (playerBottom < canvas.height) {
-    y++;
-    playerBottom = y + playerHeight;
-  }
+  player.draw();
+
+  // if (playerBottom < canvas.height) {
+  //   y++;
+  //   playerBottom = y + playerHeight;
+  // }
 }
 
 animate();
