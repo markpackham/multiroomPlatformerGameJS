@@ -24,11 +24,11 @@ class Player {
 
   update() {
     this.position.y += this.velocity.y;
+    this.sides.bottom = this.position.y + this.height;
 
     // Above the bottom of the canvas
     if (this.sides.bottom + this.velocity.y < canvas.height) {
       this.velocity.y += gravity;
-      this.sides.bottom = this.position.y + this.height;
     } else {
       this.velocity.y = 0;
     }

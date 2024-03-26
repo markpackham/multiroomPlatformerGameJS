@@ -16,3 +16,16 @@ function animate() {
 }
 
 animate();
+
+// Keyboard events
+window.addEventListener("keydown", (event) => {
+  switch (event.key) {
+    // Jump
+    case "w":
+      // Do not let player air jump
+      if (player.velocity.y === 0) {
+        player.velocity.y = -5;
+      }
+      break;
+  }
+});
