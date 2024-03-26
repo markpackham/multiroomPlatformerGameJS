@@ -4,25 +4,7 @@ const c = canvas.getContext("2d");
 canvas.width = canvasWidth;
 canvas.height = canvasHeight;
 
-class Player {
-  constructor() {
-    this.position = {
-      x: 100,
-      y: 100,
-    };
-    this.width = 100;
-    this.height = 100;
-  }
-
-  draw() {
-    c.fillStyle = "red";
-    c.fillRect(this.position.x, this.position.y, this.width, this.height);
-  }
-}
-
 const player = new Player();
-
-// let playerBottom = y + playerHeight;
 
 function animate() {
   window.requestAnimationFrame(animate);
@@ -30,11 +12,7 @@ function animate() {
   c.fillRect(0, 0, canvas.width, canvas.height);
 
   player.draw();
-
-  // if (playerBottom < canvas.height) {
-  //   y++;
-  //   playerBottom = y + playerHeight;
-  // }
+  player.update();
 }
 
 animate();
