@@ -1,8 +1,8 @@
 class Sprite {
-  constructor({ position }, imageSrc) {
+  constructor({ position, imageSrc }) {
     this.position = position;
     this.image = new Image();
-    this.image.src = "./img/backgroundLevel1.png";
+    this.image.src = imageSrc;
   }
 
   draw() {
