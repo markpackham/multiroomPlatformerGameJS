@@ -26,6 +26,8 @@ let background = new Sprite({
   imageSrc: "./img/backgroundLevel1.png",
 });
 
+let parsedCollisions = collisionsLevel1.parse2D();
+
 function animate() {
   window.requestAnimationFrame(animate);
 
