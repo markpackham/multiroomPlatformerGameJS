@@ -26,7 +26,18 @@ let background = new Sprite({
   imageSrc: "./img/backgroundLevel1.png",
 });
 
+let collisionBlocks = [];
+
 let parsedCollisions = collisionsLevel1.parse2D();
+parsedCollisions.forEach((row) => {
+  row.forEach((symbol) => {
+    // 292 is what a collision block is
+    if (symbol === 292) {
+      // Add new collision in collisionblocks array
+      collisionBlocks.push(new CollisionBlock());
+    }
+  });
+});
 
 function animate() {
   window.requestAnimationFrame(animate);
