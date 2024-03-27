@@ -18,10 +18,20 @@ const keys = {
   },
 };
 
+let background = new Sprite({
+  position: {
+    x: 0,
+    y: 0,
+  },
+  imageSrc: "./img/backgroundLevel1.png",
+});
+
 function animate() {
   window.requestAnimationFrame(animate);
   c.fillStyle = "white";
   c.fillRect(0, 0, canvas.width, canvas.height);
+
+  background.draw();
 
   player.velocity.x = 0;
 
