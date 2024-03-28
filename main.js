@@ -12,6 +12,7 @@ let collisionBlocks = parsedCollisions.createObjectsFrom2D();
 const player = new Player({
   // Set collision blocks when player created
   collisionBlocks,
+  imageSrc: "./img/king/idle.png",
 });
 
 const keys = {

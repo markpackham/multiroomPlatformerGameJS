@@ -7,6 +7,8 @@ class Sprite {
     // Whether or not image has loaded fully
     this.image.onload = () => {
       this.loaded = true;
+      this.width = this.image.width;
+      this.height = this.image.height;
     };
 
     this.loaded = false;
