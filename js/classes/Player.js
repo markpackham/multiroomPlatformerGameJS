@@ -57,8 +57,34 @@ class Player {
       }
     }
 
+    // Apply gravity
     this.position.y += this.velocity.y;
     this.sides.bottom = this.position.y + this.height;
+
+    // Check for vertical collisions
+    for (let i = 0; i < this.collisionBlocks.length; i++) {
+      const collisionBlock = this.collisionBlocks[i];
+
+      if (
+        this.position.x <= collisionBlock.position.x + collisionBlock.width &&
+        this.position.x + this.width >= collisionBlock.x &&
+        this.position.y + this.height >= collisionBlock.y &&
+        this.position.y <= collisionBlock.position.y + collisionBlock.height
+      ) {
+        // Top of player hitting collision block
+        if (this.velocity.y < -1) {
+          this.position.y =
+            collisionBlock.position.y + collisionBlock.height + playerBuffer;
+          break;
+        }
+        // Bottom of player hitting collision block
+        if (this.velocity.y > 1) {
+          this.position.y =
+            collisionBlock.position.y - this.height - playerBuffer;
+          break;
+        }
+      }
+    }
 
     // Above the bottom of the canvas
     if (this.sides.bottom + this.velocity.y < canvas.height) {
