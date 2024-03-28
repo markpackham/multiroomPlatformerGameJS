@@ -13,6 +13,7 @@ const player = new Player({
   // Set collision blocks when player created
   collisionBlocks,
   imageSrc: "./img/king/idle.png",
+  frameRate: 11,
 });
 
 const keys = {

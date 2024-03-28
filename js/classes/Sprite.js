@@ -1,13 +1,14 @@
 class Sprite {
-  constructor({ position, imageSrc }) {
+  constructor({ position, imageSrc, frameRate = 1 }) {
     this.position = position;
     this.image = new Image();
     this.image.src = imageSrc;
+    this.frameRate = frameRate;
 
     // Whether or not image has loaded fully
     this.image.onload = () => {
       this.loaded = true;
-      this.width = this.image.width / 11;
+      this.width = this.image.width / this.frameRate;
       this.height = this.image.height;
     };
 
