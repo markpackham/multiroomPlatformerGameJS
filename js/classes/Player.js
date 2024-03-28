@@ -34,8 +34,8 @@ class Player {
       // Check if a collision exists on player's left, right, bottom & finally top
       if (
         this.position.x <= collisionBlock.position.x + collisionBlock.width &&
-        this.position.x + this.width >= collisionBlock.x &&
-        this.position.y + this.height >= collisionBlock.y &&
+        this.position.x + this.width >= collisionBlock.position.x &&
+        this.position.y + this.height >= collisionBlock.position.y &&
         this.position.y <= collisionBlock.position.y + collisionBlock.height
       ) {
         // Collision on x axis going to the left - push player to the right
@@ -64,8 +64,8 @@ class Player {
 
       if (
         this.position.x <= collisionBlock.position.x + collisionBlock.width &&
-        this.position.x + this.width >= collisionBlock.x &&
-        this.position.y + this.height >= collisionBlock.y &&
+        this.position.x + this.width >= collisionBlock.position.x &&
+        this.position.y + this.height >= collisionBlock.position.y &&
         this.position.y <= collisionBlock.position.y + collisionBlock.height
       ) {
         // Top of player hitting collision block
