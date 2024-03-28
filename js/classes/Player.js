@@ -55,10 +55,14 @@ class Player extends Sprite {
 
       // Check if a collision exists on player's left, right, bottom & finally top
       if (
-        this.position.x <= collisionBlock.position.x + collisionBlock.width &&
-        this.position.x + this.width >= collisionBlock.position.x &&
-        this.position.y + this.height >= collisionBlock.position.y &&
-        this.position.y <= collisionBlock.position.y + collisionBlock.height
+        this.hitbox.position.x <=
+          collisionBlock.position.x + collisionBlock.width &&
+        this.hitbox.position.x + this.hitbox.width >=
+          collisionBlock.position.x &&
+        this.hitbox.position.y + this.hitbox.height >=
+          collisionBlock.position.y &&
+        this.hitbox.position.y <=
+          collisionBlock.position.y + collisionBlock.height
       ) {
         // Collision on x axis going to the left - push player to the right
         if (this.velocity.x < 0) {
@@ -89,10 +93,14 @@ class Player extends Sprite {
       const collisionBlock = this.collisionBlocks[i];
 
       if (
-        this.position.x <= collisionBlock.position.x + collisionBlock.width &&
-        this.position.x + this.width >= collisionBlock.position.x &&
-        this.position.y + this.height >= collisionBlock.position.y &&
-        this.position.y <= collisionBlock.position.y + collisionBlock.height
+        this.hitbox.position.x <=
+          collisionBlock.position.x + collisionBlock.width &&
+        this.hitbox.position.x + this.hitbox.width >=
+          collisionBlock.position.x &&
+        this.hitbox.position.y + this.hitbox.height >=
+          collisionBlock.position.y &&
+        this.hitbox.position.y <=
+          collisionBlock.position.y + collisionBlock.height
       ) {
         // Top of player hitting collision block
         if (this.velocity.y < 0) {
