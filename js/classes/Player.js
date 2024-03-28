@@ -26,26 +26,12 @@ class Player extends Sprite {
 
     this.position.x += this.velocity.x;
 
-    this.hitbox = {
-      position: {
-        x: this.position.x + 58,
-        y: this.position.y + 34,
-      },
-      width: 50,
-      height: 53,
-    };
+    this.updateHitbox();
 
     this.checkForHorizontalCollisions();
     this.applyGravity();
 
-    this.hitbox = {
-      position: {
-        x: this.position.x + 58,
-        y: this.position.y + 34,
-      },
-      width: 50,
-      height: 53,
-    };
+    this.updateHitbox();
 
     c.fillStyle = "rgba(0,255,0,0.4)";
     c.fillRect(
@@ -55,6 +41,17 @@ class Player extends Sprite {
       this.hitbox.height
     );
     this.checkForVerticalCollisions();
+  }
+
+  updateHitbox() {
+    this.hitbox = {
+      position: {
+        x: this.position.x + 58,
+        y: this.position.y + 34,
+      },
+      width: 50,
+      height: 53,
+    };
   }
 
   // Check for horizontal collisions
