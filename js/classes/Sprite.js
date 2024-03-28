@@ -25,6 +25,7 @@ class Sprite {
     // Don't do anything unless image loaded
     if (!this.loaded) return;
 
+    // Crop animation frames
     const cropbox = {
       position: {
         x: this.width * this.currentFrame,
