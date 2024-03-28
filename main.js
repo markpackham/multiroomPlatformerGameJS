@@ -29,12 +29,19 @@ let background = new Sprite({
 let collisionBlocks = [];
 
 let parsedCollisions = collisionsLevel1.parse2D();
-parsedCollisions.forEach((row) => {
-  row.forEach((symbol) => {
+parsedCollisions.forEach((row, yIndex) => {
+  row.forEach((symbol, xIndex) => {
     // 292 is what a collision block is
     if (symbol === 292) {
-      // Add new collision in collisionblocks array
-      collisionBlocks.push(new CollisionBlock());
+      // Add new collision in collision blocks array
+      collisionBlocks.push(
+        new CollisionBlock({
+          position: {
+            x: xIndex * 64,
+            y: yIndex * 64,
+          },
+        })
+      );
     }
   });
 });
@@ -43,6 +50,9 @@ function animate() {
   window.requestAnimationFrame(animate);
 
   background.draw();
+  collisionBlocks.forEach((collisionBlock) => {
+    collisionBlock.draw();
+  });
 
   player.velocity.x = 0;
 
