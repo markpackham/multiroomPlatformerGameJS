@@ -1,3 +1,4 @@
+// Collision block array
 Array.prototype.parse2D = function () {
   const rows = [];
   for (let i = 0; i < this.length; i += 16) {
@@ -6,4 +7,27 @@ Array.prototype.parse2D = function () {
   }
 
   return rows;
+};
+
+// Creating collision blocks
+Array.prototype.createObjectsFrom2D = function () {
+  const objects = [];
+
+  this.forEach((row, yIndex) => {
+    row.forEach((symbol, xIndex) => {
+      // 292 is what a collision block is
+      if (symbol === 292) {
+        // Add new collision in collision blocks array
+        objects.push(
+          new CollisionBlock({
+            position: {
+              x: xIndex * 64,
+              y: yIndex * 64,
+            },
+          })
+        );
+      }
+    });
+  });
+  return objects;
 };
