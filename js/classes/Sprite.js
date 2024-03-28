@@ -17,6 +17,26 @@ class Sprite {
   draw() {
     // Don't do anything unless image loaded
     if (!this.loaded) return;
-    c.drawImage(this.image, this.position.x, this.position.y);
+
+    const cropbox = {
+      position: {
+        x: 0,
+        y: 0,
+      },
+      width: this.width,
+      height: this.height,
+    };
+
+    c.drawImage(
+      this.image,
+      cropbox.position.x,
+      cropbox.position.y,
+      cropbox.width,
+      cropbox.height,
+      this.position.x,
+      this.position.y,
+      this.width,
+      this.height
+    );
   }
 }
