@@ -9,7 +9,10 @@ let parsedCollisions = collisionsLevel1.parse2D();
 let collisionBlocks = parsedCollisions.createObjectsFrom2D();
 
 // Player
-const player = new Player();
+const player = new Player({
+  // Set collision blocks when player created
+  collisionBlocks,
+});
 
 const keys = {
   w: {
