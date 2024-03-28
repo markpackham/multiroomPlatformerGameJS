@@ -13,6 +13,12 @@ class Sprite {
     };
 
     this.loaded = false;
+
+    this.currentFrame = 0;
+
+    this.elapsedFrames = 0;
+    // Slow animation down
+    this.frameBuffer = 3;
   }
 
   draw() {
@@ -21,7 +27,7 @@ class Sprite {
 
     const cropbox = {
       position: {
-        x: 0,
+        x: this.width * this.currentFrame,
         y: 0,
       },
       width: this.width,
@@ -39,5 +45,21 @@ class Sprite {
       this.width,
       this.height
     );
+
+    this.updateFrames();
+  }
+
+  updateFrames() {
+    this.elapsedFrames++;
+
+    // Slow down animation
+    if (this.elapsedFrames % this.frameBuffer === 0) {
+      // Safeguard if we have an image with only 1 frame
+      if (this.currentFrame < this.frameRate - 1) {
+        this.currentFrame++;
+      } else {
+        this.currentFrame = 0;
+      }
+    }
   }
 }
