@@ -39,14 +39,14 @@ class Player {
         this.position.y <= collisionBlock.position.y + collisionBlock.height
       ) {
         // Collision on x axis going to the left - push player to the right
-        if (this.velocity.x < -1) {
+        if (this.velocity.x < 0) {
           this.position.x =
             collisionBlock.position.x + collisionBlock.width + playerBuffer;
           break;
         }
 
         // Collision on x axis going to the right - push player to the left
-        if (this.velocity.x > 1) {
+        if (this.velocity.x > 0) {
           this.position.x =
             collisionBlock.position.x - collisionBlock.width - playerBuffer;
           break;
@@ -69,13 +69,19 @@ class Player {
         this.position.y <= collisionBlock.position.y + collisionBlock.height
       ) {
         // Top of player hitting collision block
-        if (this.velocity.y < -1) {
+        if (this.velocity.y < 0) {
+          // Stop gravity so player doesn't pass through block
+          this.velocity.y = 0;
+
           this.position.y =
             collisionBlock.position.y + collisionBlock.height + playerBuffer;
           break;
         }
         // Bottom of player hitting collision block
-        if (this.velocity.y > 1) {
+        if (this.velocity.y > 0) {
+          // Stop gravity so player doesn't pass through block
+          this.velocity.y = 0;
+
           this.position.y =
             collisionBlock.position.y - this.height - playerBuffer;
           break;
