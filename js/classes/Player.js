@@ -26,6 +26,15 @@ class Player extends Sprite {
 
     this.position.x += this.velocity.x;
 
+    this.hitbox = {
+      position: {
+        x: this.position.x + 58,
+        y: this.position.y + 34,
+      },
+      width: 50,
+      height: 53,
+    };
+
     this.checkForHorizontalCollisions();
     this.applyGravity();
 
