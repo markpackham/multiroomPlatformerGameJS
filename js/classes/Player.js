@@ -107,8 +107,13 @@ class Player extends Sprite {
           // Stop gravity so player doesn't pass through block
           this.velocity.y = 0;
 
+          const offset = this.hitbox.position.y - this.position.y;
+
           this.position.y =
-            collisionBlock.position.y + collisionBlock.height + playerBuffer;
+            collisionBlock.position.y +
+            collisionBlock.height -
+            offset +
+            playerBuffer;
           break;
         }
         // Bottom of player hitting collision block
@@ -116,8 +121,10 @@ class Player extends Sprite {
           // Stop gravity so player doesn't pass through block
           this.velocity.y = 0;
 
-          this.position.y =
-            collisionBlock.position.y - this.height - playerBuffer;
+          const offset =
+            this.hitbox.position.y - this.position.y + this.hitbox.height;
+
+          this.position.y = collisionBlock.position.y - offset - playerBuffer;
           break;
         }
       }
