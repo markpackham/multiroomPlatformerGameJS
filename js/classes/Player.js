@@ -1,8 +1,5 @@
 class Player {
-  constructor() {
-    {
-      collisionBlocks = [];
-    }
+  constructor({ collisionBlocks = [] }) {
     this.position = {
       x: 100,
       y: 100,
