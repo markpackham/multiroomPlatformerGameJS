@@ -41,8 +41,18 @@ class Player {
         this.position.y + this.height >= collisionBlock.y &&
         this.position.y <= collisionBlock.position.y + collisionBlock.height
       ) {
-        // Collision on x axis going to the left
+        // Collision on x axis going to the left - push player to the right
         if (this.velocity.x < -1) {
+          this.position.x =
+            collisionBlock.position.x + collisionBlock.width + playerBuffer;
+          break;
+        }
+
+        // Collision on x axis going to the right - push player to the left
+        if (this.velocity.x > 1) {
+          this.position.x =
+            collisionBlock.position.x - collisionBlock.width - playerBuffer;
+          break;
         }
       }
     }
