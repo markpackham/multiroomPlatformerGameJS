@@ -1,5 +1,8 @@
-class Player {
-  constructor({ collisionBlocks = [] }) {
+class Player extends Sprite {
+  constructor({ collisionBlocks = [], imageSrc }) {
+    // Use draw method from Sprite parent class
+    super({ imageSrc });
+
     this.position = {
       x: 200,
       y: 200,
@@ -17,11 +20,6 @@ class Player {
     };
 
     this.collisionBlocks = collisionBlocks;
-  }
-
-  draw() {
-    c.fillStyle = "red";
-    c.fillRect(this.position.x, this.position.y, this.width, this.height);
   }
 
   update() {
