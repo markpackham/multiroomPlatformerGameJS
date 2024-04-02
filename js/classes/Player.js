@@ -21,8 +21,8 @@ class Player extends Sprite {
   }
 
   update() {
-    c.fillStyle = "rgba(0,0,255,0.4)";
-    c.fillRect(this.position.x, this.position.y, this.width, this.height);
+    // c.fillStyle = "rgba(0,0,255,0.4)";
+    // c.fillRect(this.position.x, this.position.y, this.width, this.height);
 
     this.position.x += this.velocity.x;
 
@@ -33,18 +33,21 @@ class Player extends Sprite {
 
     this.updateHitbox();
 
-    c.fillStyle = "rgba(0,255,0,0.4)";
-    c.fillRect(
-      this.hitbox.position.x,
-      this.hitbox.position.y,
-      this.hitbox.width,
-      this.hitbox.height
-    );
+    // c.fillStyle = "rgba(0,255,0,0.4)";
+    // c.fillRect(
+    //   this.hitbox.position.x,
+    //   this.hitbox.position.y,
+    //   this.hitbox.width,
+    //   this.hitbox.height
+    // );
     this.checkForVerticalCollisions();
   }
 
   // Switch animation sprite
   switchSprite(name) {
+    // Don't do anything if we're already on the correct image
+    if (this.image === this.animations[name].image) return;
+
     // Set frame to 0 since some animations have way more frames than others
     this.currentFrame = 0;
     this.image = this.animations[name].image;
