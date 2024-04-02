@@ -71,7 +71,14 @@ class Sprite {
     this.updateFrames();
   }
 
+  play() {
+    this.autoplay = true;
+  }
+
   updateFrames() {
+    // Autoplay is true by default, we set doors to false so they remain closed till player uses them
+    if (!this.autoplay) return;
+
     this.elapsedFrames++;
 
     // Slow down animation
