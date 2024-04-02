@@ -78,12 +78,20 @@ function animate() {
     {
       player.switchSprite("runRight");
       player.velocity.x = 5;
+      player.lastDirection = "right";
     }
   } else if (keys.a.pressed) {
     player.switchSprite("runLeft");
     player.velocity.x = -5;
+    player.lastDirection = "left";
+
+    // When a button isn't pressed go idle
   } else {
-    player.switchSprite("idleRight");
+    if (player.lastDirection === "left") {
+      player.switchSprite("idleLeft");
+    } else {
+      player.switchSprite("idleRight");
+    }
   }
 
   player.draw();
