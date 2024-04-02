@@ -1,5 +1,5 @@
 class Sprite {
-  constructor({ position, imageSrc, frameRate = 1 }) {
+  constructor({ position, imageSrc, frameRate = 1, animations }) {
     this.position = position;
     this.image = new Image();
     this.image.src = imageSrc;
@@ -10,6 +10,16 @@ class Sprite {
       this.loaded = true;
       this.width = this.image.width / this.frameRate;
       this.height = this.image.height;
+      this.animations = animations;
+
+      if (this.animations) {
+        // Create image objects for all animations rather than create them individually
+        for (let key in this.animations) {
+          const image = new Image();
+          image.src = this.animations[key].imageSrc;
+          this.animations[key].image = image;
+        }
+      }
     };
 
     this.loaded = false;

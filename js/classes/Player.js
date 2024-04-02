@@ -1,7 +1,7 @@
 class Player extends Sprite {
-  constructor({ collisionBlocks = [], imageSrc, frameRate }) {
+  constructor({ collisionBlocks = [], imageSrc, frameRate, animations }) {
     // Use draw method from Sprite parent class
-    super({ imageSrc, frameRate });
+    super({ imageSrc, frameRate, animations });
 
     this.position = {
       x: 200,
