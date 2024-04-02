@@ -6,6 +6,7 @@ class Sprite {
     animations,
     frameBuffer = 3,
     loop = true,
+    autoplay = true,
   }) {
     this.position = position;
     this.image = new Image();
@@ -37,6 +38,8 @@ class Sprite {
     // Slow animation down
     this.frameBuffer = frameBuffer;
     this.loop = loop;
+    // Autoplay used for things like entering a door
+    this.autoplay = autoplay;
   }
 
   draw() {
