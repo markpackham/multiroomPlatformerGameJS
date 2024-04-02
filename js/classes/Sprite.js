@@ -1,5 +1,12 @@
 class Sprite {
-  constructor({ position, imageSrc, frameRate = 1, animations }) {
+  constructor({
+    position,
+    imageSrc,
+    frameRate = 1,
+    animations,
+    frameBuffer = 3,
+    loop = true,
+  }) {
     this.position = position;
     this.image = new Image();
     this.image.src = imageSrc;
@@ -28,7 +35,8 @@ class Sprite {
 
     this.elapsedFrames = 0;
     // Slow animation down
-    this.frameBuffer = 3;
+    this.frameBuffer = frameBuffer;
+    this.loop = loop;
   }
 
   draw() {
@@ -68,7 +76,8 @@ class Sprite {
       // Safeguard if we have an image with only 1 frame
       if (this.currentFrame < this.frameRate - 1) {
         this.currentFrame++;
-      } else {
+        // Only keep animation going if loop is true
+      } else if (this.loop) {
         this.currentFrame = 0;
       }
     }
