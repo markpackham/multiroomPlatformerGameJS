@@ -97,7 +97,7 @@ function animate() {
     door.draw();
   });
 
-  player.handleInput();
+  player.handleInput(keys);
   player.draw();
   player.update();
 }

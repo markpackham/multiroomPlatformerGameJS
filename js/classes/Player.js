@@ -1,7 +1,7 @@
 class Player extends Sprite {
-  constructor({ collisionBlocks = [], imageSrc, frameRate, animations }) {
+  constructor({ collisionBlocks = [], imageSrc, frameRate, animations, loop }) {
     // Use draw method from Sprite parent class
-    super({ imageSrc, frameRate, animations });
+    super({ imageSrc, frameRate, animations, loop });
 
     this.position = {
       x: 200,
@@ -43,7 +43,7 @@ class Player extends Sprite {
     this.checkForVerticalCollisions();
   }
 
-  handleInput() {
+  handleInput(keys) {
     if (this.preventInput) return;
     this.velocity.x = 0;
 
@@ -78,6 +78,7 @@ class Player extends Sprite {
     this.image = this.animations[name].image;
     this.frameRate = this.animations[name].frameRate;
     this.frameBuffer = this.animations[name].frameBuffer;
+    this.loop = this.animations[name].loop;
   }
 
   updateHitbox() {
