@@ -39,6 +39,12 @@ const player = new Player({
       loop: true,
       imageSrc: "./img/king/runLeft.png",
     },
+    enterDoor: {
+      frameRate: 8,
+      frameBuffer: 4,
+      loop: false,
+      imageSrc: "./img/king/enterDoor.png",
+    },
   },
 });
 
@@ -91,28 +97,7 @@ function animate() {
     door.draw();
   });
 
-  player.velocity.x = 0;
-
-  if (keys.d.pressed) {
-    {
-      player.switchSprite("runRight");
-      player.velocity.x = 5;
-      player.lastDirection = "right";
-    }
-  } else if (keys.a.pressed) {
-    player.switchSprite("runLeft");
-    player.velocity.x = -5;
-    player.lastDirection = "left";
-
-    // When a button isn't pressed go idle
-  } else {
-    if (player.lastDirection === "left") {
-      player.switchSprite("idleLeft");
-    } else {
-      player.switchSprite("idleRight");
-    }
-  }
-
+  player.handleInput();
   player.draw();
   player.update();
 }

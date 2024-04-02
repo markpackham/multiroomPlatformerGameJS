@@ -43,6 +43,31 @@ class Player extends Sprite {
     this.checkForVerticalCollisions();
   }
 
+  handleInput() {
+    if (this.preventInput) return;
+    this.velocity.x = 0;
+
+    if (keys.d.pressed) {
+      {
+        this.switchSprite("runRight");
+        this.velocity.x = 5;
+        this.lastDirection = "right";
+      }
+    } else if (keys.a.pressed) {
+      this.switchSprite("runLeft");
+      this.velocity.x = -5;
+      this.lastDirection = "left";
+
+      // When a button isn't pressed go idle
+    } else {
+      if (this.lastDirection === "left") {
+        this.switchSprite("idleLeft");
+      } else {
+        this.switchSprite("idleRight");
+      }
+    }
+  }
+
   // Switch animation sprite
   switchSprite(name) {
     // Don't do anything if we're already on the correct image
