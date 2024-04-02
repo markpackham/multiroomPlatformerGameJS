@@ -72,8 +72,9 @@ class Player extends Sprite {
       ) {
         // Collision on x axis going to the left - push player to the right
         if (this.velocity.x < 0) {
-          this.position.x =
-            collisionBlock.position.x + collisionBlock.width + playerBuffer;
+          const offset =
+            this.hitbox.position.x - this.position.x + this.hitbox.width;
+          this.position.x = collisionBlock.position.x - offset - playerBuffer;
           break;
         }
 
@@ -112,9 +113,7 @@ class Player extends Sprite {
         if (this.velocity.y < 0) {
           // Stop gravity so player doesn't pass through block
           this.velocity.y = 0;
-
           const offset = this.hitbox.position.y - this.position.y;
-
           this.position.y =
             collisionBlock.position.y +
             collisionBlock.height -
@@ -126,10 +125,8 @@ class Player extends Sprite {
         if (this.velocity.y > 0) {
           // Stop gravity so player doesn't pass through block
           this.velocity.y = 0;
-
           const offset =
             this.hitbox.position.y - this.position.y + this.hitbox.height;
-
           this.position.y = collisionBlock.position.y - offset - playerBuffer;
           break;
         }
