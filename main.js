@@ -14,6 +14,7 @@ const player = new Player({
   collisionBlocks,
   imageSrc: "./img/king/idle.png",
   frameRate: 11,
+  animations: {},
 });
 
 const keys = {
