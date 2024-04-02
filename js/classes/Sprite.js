@@ -20,6 +20,8 @@ class Sprite {
       this.height = this.image.height;
       this.animations = animations;
 
+      this.currentAnimation;
+
       if (this.animations) {
         // Create image objects for all animations rather than create them individually
         for (let key in this.animations) {
@@ -89,6 +91,17 @@ class Sprite {
         // Only keep animation going if loop is true
       } else if (this.loop) {
         this.currentFrame = 0;
+      }
+
+      // Check if currentAnimaiton exists & if it has an onComplete property
+      if (this.currentAnimation?.onComplete) {
+        // Check if at end frame of animation
+        if (
+          this.currentFrame === this.frameRate - 1 &&
+          !this.currentAnimation.isActive
+        ) {
+          this.currentAnimation.onComplete();
+        }
       }
     }
   }
