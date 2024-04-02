@@ -71,17 +71,21 @@ class Player extends Sprite {
           collisionBlock.position.y + collisionBlock.height
       ) {
         // Collision on x axis going to the left - push player to the right
-        if (this.velocity.x < 0) {
-          const offset =
-            this.hitbox.position.x - this.position.x + this.hitbox.width;
-          this.position.x = collisionBlock.position.x - offset - playerBuffer;
+        if (this.velocity.x < -0) {
+          const offset = this.hitbox.position.x - this.position.x;
+          this.position.x =
+            collisionBlock.position.x +
+            collisionBlock.width -
+            offset +
+            playerBuffer;
           break;
         }
 
         // Collision on x axis going to the right - push player to the left
         if (this.velocity.x > 0) {
-          this.position.x =
-            collisionBlock.position.x - collisionBlock.width - playerBuffer;
+          const offset =
+            this.hitbox.position.x - this.position.x + this.hitbox.width;
+          this.position.x = collisionBlock.position.x - offset - playerBuffer;
           break;
         }
       }
@@ -94,11 +98,12 @@ class Player extends Sprite {
     this.position.y += this.velocity.y;
   }
 
-  // Check for vertical collisions
+  // Check for horizontal collisions
   checkForVerticalCollisions() {
     for (let i = 0; i < this.collisionBlocks.length; i++) {
       const collisionBlock = this.collisionBlocks[i];
 
+      // Check if a collision exists on player's left, right, bottom & finally top
       if (
         this.hitbox.position.x <=
           collisionBlock.position.x + collisionBlock.width &&
@@ -109,9 +114,8 @@ class Player extends Sprite {
         this.hitbox.position.y <=
           collisionBlock.position.y + collisionBlock.height
       ) {
-        // Top of player hitting collision block
+        // Collision on x axis going to the left - push player to the right
         if (this.velocity.y < 0) {
-          // Stop gravity so player doesn't pass through block
           this.velocity.y = 0;
           const offset = this.hitbox.position.y - this.position.y;
           this.position.y =
@@ -121,6 +125,7 @@ class Player extends Sprite {
             playerBuffer;
           break;
         }
+
         // Bottom of player hitting collision block
         if (this.velocity.y > 0) {
           // Stop gravity so player doesn't pass through block
