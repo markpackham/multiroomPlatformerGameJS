@@ -1,3 +1,9 @@
 body {
   background: black;
 }
+
+#info {
+  color: white;
+  font-size: 18px;
+  padding: 5px;
+}
