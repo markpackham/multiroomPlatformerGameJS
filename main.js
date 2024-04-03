@@ -51,6 +51,13 @@ const player = new Player({
         // GSAP animation library used https://gsap.com/docs/v3/
         gsap.to(overlay, {
           opacity: 1,
+          onComplete: () => {
+            level++;
+            levels[level].init();
+            gsap.to(overlay, {
+              opacity: 0,
+            });
+          },
         });
       },
     },
@@ -64,6 +71,7 @@ let level = 1;
 
 // Levels
 let levels = {
+  // Level 1
   1: {
     init: () => {
       parsedCollisions = collisionsLevel1.parse2D();
@@ -76,6 +84,37 @@ let levels = {
             y: 0,
           },
           imageSrc: "./img/backgroundLevel1.png",
+        }));
+
+      doors = [
+        new Sprite({
+          position: {
+            x: 767,
+            y: 270,
+          },
+          imageSrc: "./img/doorOpen.png",
+          frameRate: 5,
+          frameBuffer: 12,
+          loop: false,
+          autoplay: false,
+        }),
+      ];
+    },
+  },
+
+  // Level 2
+  2: {
+    init: () => {
+      parsedCollisions = collisionsLevel1.parse2D();
+      collisionBlocks = parsedCollisions.createObjectsFrom2D();
+      (player.collisionBlocks = collisionBlocks),
+        // Background
+        (background = new Sprite({
+          position: {
+            x: 0,
+            y: 0,
+          },
+          imageSrc: "./img/backgroundLevel2.png",
         }));
 
       doors = [
