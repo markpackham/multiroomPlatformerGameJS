@@ -10,38 +10,37 @@ class Sprite {
   }) {
     this.position = position;
     this.image = new Image();
-    this.image.src = imageSrc;
-    this.frameRate = frameRate;
 
     // Whether or not image has loaded fully
     this.image.onload = () => {
       this.loaded = true;
       this.width = this.image.width / this.frameRate;
       this.height = this.image.height;
-      this.animations = animations;
-
-      this.currentAnimation;
-
-      if (this.animations) {
-        // Create image objects for all animations rather than create them individually
-        for (let key in this.animations) {
-          const image = new Image();
-          image.src = this.animations[key].imageSrc;
-          this.animations[key].image = image;
-        }
-      }
     };
 
+    this.image.src = imageSrc;
     this.loaded = false;
-
+    this.frameRate = frameRate;
     this.currentFrame = 0;
-
     this.elapsedFrames = 0;
     // Slow animation down
+
     this.frameBuffer = frameBuffer;
+    this.animations = animations;
     this.loop = loop;
     // Autoplay used for things like entering a door
+
     this.autoplay = autoplay;
+    this.currentAnimation;
+
+    if (this.animations) {
+      // Create image objects for all animations rather than create them individually
+      for (let key in this.animations) {
+        const image = new Image();
+        image.src = this.animations[key].imageSrc;
+        this.animations[key].image = image;
+      }
+    }
   }
 
   draw() {
