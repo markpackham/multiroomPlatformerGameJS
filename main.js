@@ -10,44 +10,6 @@ let collisionBlocks;
 
 let doors;
 
-// Background
-let background;
-
-let level = 1;
-
-// Levels
-let levels = {
-  1: {
-    init: () => {
-      parsedCollisions = collisionsLevel1.parse2D();
-      collisionBlocks = parsedCollisions.createObjectsFrom2D();
-
-      // Background
-      background = new Sprite({
-        position: {
-          x: 0,
-          y: 0,
-        },
-        imageSrc: "./img/backgroundLevel1.png",
-      });
-
-      doors = [
-        new Sprite({
-          position: {
-            x: 767,
-            y: 270,
-          },
-          imageSrc: "./img/doorOpen.png",
-          frameRate: 5,
-          frameBuffer: 12,
-          loop: false,
-          autoplay: false,
-        }),
-      ];
-    },
-  },
-};
-
 // Player
 const player = new Player({
   // Set collision blocks when player created
@@ -96,6 +58,44 @@ const player = new Player({
   },
 });
 
+// Background
+let background;
+
+let level = 1;
+
+// Levels
+let levels = {
+  1: {
+    init: () => {
+      parsedCollisions = collisionsLevel1.parse2D();
+      collisionBlocks = parsedCollisions.createObjectsFrom2D();
+
+      // Background
+      background = new Sprite({
+        position: {
+          x: 0,
+          y: 0,
+        },
+        imageSrc: "./img/backgroundLevel1.png",
+      });
+
+      doors = [
+        new Sprite({
+          position: {
+            x: 767,
+            y: 270,
+          },
+          imageSrc: "./img/doorOpen.png",
+          frameRate: 5,
+          frameBuffer: 12,
+          loop: false,
+          autoplay: false,
+        }),
+      ];
+    },
+  },
+};
+
 const keys = {
   w: {
     pressed: false,
@@ -139,4 +139,5 @@ function animate() {
   c.restore();
 }
 
+levels[level].init();
 animate();
