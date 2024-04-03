@@ -53,6 +53,10 @@ const player = new Player({
           opacity: 1,
           onComplete: () => {
             level++;
+
+            // We have no level 4 so go back to 1
+            if (level === 4) level = 1;
+
             levels[level].init();
             player.switchSprite("idleRight");
             player.preventInput = false;
@@ -70,7 +74,7 @@ const player = new Player({
 // Background
 let background;
 
-// Starting level
+// Starting level is level 1
 let level = 1;
 
 // Levels
