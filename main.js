@@ -39,11 +39,15 @@ const player = new Player({
       loop: true,
       imageSrc: "./img/king/runLeft.png",
     },
+    // Door
     enterDoor: {
       frameRate: 8,
       frameBuffer: 4,
       loop: false,
       imageSrc: "./img/king/enterDoor.png",
+      onComplete: () => {
+        overlay.opacity;
+      },
     },
   },
 });
@@ -100,6 +104,10 @@ function animate() {
   player.handleInput(keys);
   player.draw();
   player.update();
+
+  // Fade to black when entering door
+  c.fillStyle = "black";
+  c.fillRect(0, 0, canvas.width, canvas.height);
 }
 
 animate();
