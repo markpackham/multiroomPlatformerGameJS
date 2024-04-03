@@ -100,6 +100,7 @@ class Sprite {
           !this.currentAnimation.isActive
         ) {
           this.currentAnimation.onComplete();
+          this.currentAnimation.isActive = true;
         }
       }
     }
