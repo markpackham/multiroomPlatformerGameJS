@@ -5,8 +5,48 @@ canvas.width = canvasWidth;
 canvas.height = canvasHeight;
 
 // Collision blocks
-let parsedCollisions = collisionsLevel1.parse2D();
-let collisionBlocks = parsedCollisions.createObjectsFrom2D();
+let parsedCollisions;
+let collisionBlocks;
+
+let doors;
+
+// Background
+let background;
+
+let level = 1;
+
+// Levels
+let levels = {
+  1: {
+    init: () => {
+      parsedCollisions = collisionsLevel1.parse2D();
+      collisionBlocks = parsedCollisions.createObjectsFrom2D();
+
+      // Background
+      background = new Sprite({
+        position: {
+          x: 0,
+          y: 0,
+        },
+        imageSrc: "./img/backgroundLevel1.png",
+      });
+
+      doors = [
+        new Sprite({
+          position: {
+            x: 767,
+            y: 270,
+          },
+          imageSrc: "./img/doorOpen.png",
+          frameRate: 5,
+          frameBuffer: 12,
+          loop: false,
+          autoplay: false,
+        }),
+      ];
+    },
+  },
+};
 
 // Player
 const player = new Player({
@@ -56,21 +96,6 @@ const player = new Player({
   },
 });
 
-// Doors
-const doors = [
-  new Sprite({
-    position: {
-      x: 767,
-      y: 270,
-    },
-    imageSrc: "./img/doorOpen.png",
-    frameRate: 5,
-    frameBuffer: 12,
-    loop: false,
-    autoplay: false,
-  }),
-];
-
 const keys = {
   w: {
     pressed: false,
@@ -87,15 +112,6 @@ const keys = {
 const overlay = {
   opacity: 0,
 };
-
-// Background
-let background = new Sprite({
-  position: {
-    x: 0,
-    y: 0,
-  },
-  imageSrc: "./img/backgroundLevel1.png",
-});
 
 // Animation
 function animate() {
