@@ -84,6 +84,8 @@ let levels = {
       parsedCollisions = collisionsLevel1.parse2D();
       collisionBlocks = parsedCollisions.createObjectsFrom2D();
       player.collisionBlocks = collisionBlocks;
+
+      // Need to set currentAnimaiton.isActive to false so currentAnimation.onComplete() can be called
       if (player.currentAnimation) player.currentAnimation.isActive = false;
 
       background = new Sprite({
