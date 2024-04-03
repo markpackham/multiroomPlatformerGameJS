@@ -13,7 +13,6 @@ let doors;
 // Player
 const player = new Player({
   // Set collision blocks when player created
-  collisionBlocks,
   imageSrc: "./img/king/idle.png",
   frameRate: 11,
   animations: {
@@ -69,15 +68,15 @@ let levels = {
     init: () => {
       parsedCollisions = collisionsLevel1.parse2D();
       collisionBlocks = parsedCollisions.createObjectsFrom2D();
-
-      // Background
-      background = new Sprite({
-        position: {
-          x: 0,
-          y: 0,
-        },
-        imageSrc: "./img/backgroundLevel1.png",
-      });
+      (player.collisionBlocks = collisionBlocks),
+        // Background
+        (background = new Sprite({
+          position: {
+            x: 0,
+            y: 0,
+          },
+          imageSrc: "./img/backgroundLevel1.png",
+        }));
 
       doors = [
         new Sprite({
