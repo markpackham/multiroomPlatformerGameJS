@@ -45,8 +45,12 @@ const player = new Player({
       frameBuffer: 4,
       loop: false,
       imageSrc: "./img/king/enterDoor.png",
+
       onComplete: () => {
-        overlay.opacity;
+        // GSAP animation library used https://gsap.com/docs/v3/
+        gsap.to(overlay, {
+          opacity: 1,
+        });
       },
     },
   },
@@ -79,6 +83,11 @@ const keys = {
   },
 };
 
+// Overlay for fade out
+const overlay = {
+  opacity: 0,
+};
+
 // Background
 let background = new Sprite({
   position: {
@@ -105,9 +114,13 @@ function animate() {
   player.draw();
   player.update();
 
+  c.save();
   // Fade to black when entering door
+  // globalAlpha only applies to what exists between the canvas' c.save() & c.restore()
+  c.globalAlpha = overlay.opacity;
   c.fillStyle = "black";
   c.fillRect(0, 0, canvas.width, canvas.height);
+  c.restore();
 }
 
 animate();
